@@ -6,25 +6,57 @@
   <title>Bartido — Batidos Naturales en Madrid</title>
   <meta name="description" content="Bartido, los mejores batidos naturales de Madrid. Frescos, saludables y deliciosos. Preparados al momento con ingredientes de temporada." />
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bartido — Batidos Naturales en Madrid" />
+  <meta property="og:description" content="Batidos frescos, naturales y deliciosos preparados al momento. ¡Visítanos en el corazón de Madrid!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ismaelakapo.github.io/Bartido/" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=1200&q=80" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "Bartido",
+    "image": "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&q=80",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle de los Batidos, 12",
+      "addressLocality": "Madrid",
+      "addressRegion": "MD",
+      "postalCode": "28001",
+      "addressCountry": "ES"
+    },
+    "url": "https://ismaelakapo.github.io/Bartido/",
+    "telephone": "+34600000000",
+    "email": "hola@bartido.com",
+    "openingHours": "Mo-Fr 09:00-21:00, Sa 10:00-22:00, Su 10:00-20:00",
+    "servesCuisine": "Smoothies, Batidos Naturales",
+    "priceRange": "€"
+  }
+  </script>
+
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M7 3h10l.8 3H6.2L7 3z' stroke='%23FF6B35' stroke-width='1.8' fill='none'/><path d='M6.2 6l1.3 12a1 1 0 001 .9h7a1 1 0 001-.9L17.8 6' stroke='%23FF6B35' stroke-width='1.8' fill='none'/><circle cx='12' cy='13' r='2.5' fill='%2310B981'/></svg>" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- UI/UX Pro Max: Lora (headings) + Raleway (body) — wellness/health typography pairing -->
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            heading: ['Lora', 'Georgia', 'serif'],
-            body:    ['Raleway', 'sans-serif'],
-          },
+          fontFamily: { heading: ['Lora', 'serif'], body: ['Raleway', 'sans-serif'] },
           colors: {
             primary: '#FF6B35',
             dark:    '#1E3A2F',
             navy:    '#1A1A2E',
             amber:   '#D97706',
+            accent:  '#FF2D78',
+            teal:    '#00C896'
           }
         }
       }
@@ -32,13 +64,39 @@
   </script>
 
   <style>
-    /* Base typography — UI/UX Pro Max: Lora headings, Raleway body */
     body { font-family: 'Raleway', sans-serif; color: #1E3A2F; }
-    h1, h2, h3, h4 { font-family: 'Lora', Georgia, serif; }
+    h1, h2, h3, h4 { font-family: 'Lora', serif; }
 
-    /* Hero gradient — softened (UI/UX Pro Max: avoid harsh neon) */
+    /* Hero animated gradient */
     .hero-bg {
-      background: linear-gradient(135deg, #FF6B35 0%, #F59E0B 55%, #10B981 100%);
+      background: linear-gradient(-45deg, #FF6B35, #F59E0B, #10B981, #00C896);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+    @keyframes gradientShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating blobs */
+    .blob {
+      position: absolute;
+      filter: blur(50px);
+      z-index: 0;
+      opacity: 0.5;
+      animation: blobFloat 10s infinite alternate ease-in-out;
+    }
+    @keyframes blobFloat {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(20px, -40px) scale(1.1); }
+    }
+
+    /* Hero image float */
+    .float-img { animation: floatImg 5s infinite ease-in-out; }
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-20px); }
     }
 
     /* Navbar */
@@ -49,38 +107,33 @@
       border-bottom: 1px solid rgba(16, 185, 129, 0.12);
     }
 
-    /* Soft UI Evolution cards (UI/UX Pro Max style recommendation) */
+    /* Soft UI cards */
     .card-soft {
       transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
-      box-shadow: 0 4px 16px rgba(30, 58, 47, 0.07), 0 1px 4px rgba(30, 58, 47, 0.04);
+      box-shadow: 0 4px 16px rgba(30,58,47,0.07), 0 1px 4px rgba(30,58,47,0.04);
     }
     .card-soft:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(30, 58, 47, 0.13), 0 4px 12px rgba(30, 58, 47, 0.07);
+      box-shadow: 0 16px 40px rgba(30,58,47,0.13), 0 4px 12px rgba(30,58,47,0.07);
     }
 
     /* Testimonial cards */
     .testimonial-card {
-      box-shadow: 0 2px 12px rgba(30, 58, 47, 0.07);
+      box-shadow: 0 2px 12px rgba(30,58,47,0.07);
       transition: box-shadow 0.25s ease-out, transform 0.25s ease-out;
     }
     .testimonial-card:hover {
-      box-shadow: 0 8px 28px rgba(30, 58, 47, 0.12);
+      box-shadow: 0 8px 28px rgba(30,58,47,0.12);
       transform: translateY(-4px);
     }
 
-    /* Feature icons */
-    .feature-icon { transition: transform 0.2s ease-out; }
-    .feature-card:hover .feature-icon { transform: scale(1.1); }
-
-    /* Focus states — accessibility (WCAG AA) */
+    /* Focus states — WCAG AA */
     :focus-visible {
       outline: 2px solid #FF6B35;
       outline-offset: 3px;
       border-radius: 4px;
     }
 
-    /* prefers-reduced-motion — UX critical rule */
+    /* prefers-reduced-motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -88,11 +141,7 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      [data-aos] {
-        transition: none !important;
-        transform: none !important;
-        opacity: 1 !important;
-      }
+      [data-aos] { transition: none !important; transform: none !important; opacity: 1 !important; }
     }
 
     html { scroll-behavior: smooth; }
@@ -105,23 +154,24 @@
   <nav class="navbar-blur fixed top-0 w-full z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
 
-      <a href="#" class="flex items-center gap-2" aria-label="Bartido — inicio">
-        <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <a href="#" class="flex items-center gap-2 group" aria-label="Bartido — inicio">
+        <svg class="w-8 h-8 transition-transform duration-200 group-hover:rotate-12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M7 3h10l.8 3H6.2L7 3z" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M6.2 6l1.3 12a1 1 0 001 .9h7a1 1 0 001-.9L17.8 6" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round"/>
           <circle cx="12" cy="13" r="2.5" fill="#10B981"/>
         </svg>
-        <span class="text-xl font-bold" style="font-family:'Lora',serif;color:#1A1A2E">Bartido</span>
+        <span class="text-xl font-bold tracking-tight" style="font-family:'Lora',serif;color:#1A1A2E">Bartido</span>
       </a>
 
       <ul class="hidden md:flex items-center gap-8 text-sm font-semibold" style="color:#1A1A2E">
         <li><a href="#batidos"   class="hover:text-primary transition-colors duration-200 cursor-pointer">Batidos</a></li>
-        <li><a href="#porque"   class="hover:text-primary transition-colors duration-200 cursor-pointer">Por qué nosotros</a></li>
+        <li><a href="#porque"   class="hover:text-primary transition-colors duration-200 cursor-pointer">Nosotros</a></li>
         <li><a href="#ubicacion" class="hover:text-primary transition-colors duration-200 cursor-pointer">Ubicación</a></li>
         <li>
-          <a href="#contacto"
-             class="bg-primary text-white px-5 py-2 rounded-full hover:bg-orange-600 transition-colors duration-200 cursor-pointer shadow-sm">
-            Contáctanos
+          <a href="https://wa.me/34600000000?text=Hola! Querría información sobre vuestros batidos"
+             target="_blank" rel="noopener noreferrer"
+             class="bg-primary text-white px-6 py-2 rounded-full hover:bg-orange-600 transition-colors duration-200 shadow-lg shadow-orange-500/20 cursor-pointer">
+            Pedir Ahora
           </a>
         </li>
       </ul>
@@ -136,65 +186,71 @@
     </div>
 
     <div id="mobileMenu"
-         class="hidden md:hidden px-4 pb-4 flex flex-col gap-1 text-sm font-semibold border-t border-emerald-100"
-         style="color:#1A1A2E">
-      <a href="#batidos"    class="py-2 hover:text-primary transition-colors duration-200 cursor-pointer">Batidos</a>
-      <a href="#porque"    class="py-2 hover:text-primary transition-colors duration-200 cursor-pointer">Por qué nosotros</a>
-      <a href="#ubicacion" class="py-2 hover:text-primary transition-colors duration-200 cursor-pointer">Ubicación</a>
-      <a href="#contacto"  class="py-2 hover:text-primary transition-colors duration-200 cursor-pointer">Contáctanos</a>
+         class="hidden md:hidden px-4 pb-6 flex flex-col gap-1 font-semibold border-t border-emerald-100"
+         style="color:#1A1A2E;background:rgba(255,255,255,0.97)">
+      <a href="#batidos"    class="py-3 border-b border-gray-100 hover:text-primary transition-colors duration-200 cursor-pointer">Batidos</a>
+      <a href="#porque"    class="py-3 border-b border-gray-100 hover:text-primary transition-colors duration-200 cursor-pointer">Nosotros</a>
+      <a href="#ubicacion" class="py-3 border-b border-gray-100 hover:text-primary transition-colors duration-200 cursor-pointer">Ubicación</a>
+      <a href="https://wa.me/34600000000?text=Hola! Querría información sobre vuestros batidos"
+         target="_blank" rel="noopener noreferrer"
+         class="mt-2 bg-primary text-white py-3 rounded-full text-center font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">
+        Pedir Ahora
+      </a>
     </div>
   </nav>
 
   <!-- HERO -->
-  <section class="hero-bg min-h-[85vh] md:min-h-screen flex items-center pt-16 md:pt-20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-20 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+  <section class="hero-bg relative min-h-screen flex items-center overflow-hidden pt-20">
+    <!-- Blobs -->
+    <div class="blob w-64 h-64 bg-white/30 rounded-full" style="top:80px;left:-80px"></div>
+    <div class="blob w-96 h-96 rounded-full" style="background:#00C896;opacity:.15;bottom:0;right:-80px;animation-delay:-2s"></div>
 
-      <div data-aos="fade-right" data-aos-duration="700" class="text-center md:text-left">
-        <span class="inline-block bg-white/25 text-white text-xs font-bold px-3 py-1 sm:px-4 sm:py-1.5 rounded-full mb-3 md:mb-4 uppercase tracking-widest">
-          100% Natural
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid md:grid-cols-2 gap-12 items-center py-12">
+
+      <div data-aos="fade-right" data-aos-duration="700">
+        <span class="inline-block bg-white/25 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
+          100% Natural · Madrid
         </span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4 md:mb-6">
-          Tu batido<br/>
-          <em class="not-italic" style="opacity:.85">favorito,</em><br/>
-          aquí.
+        <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6">
+          Tu batido<br>
+          <span style="color:rgba(26,26,46,0.85)">favorito</span>,<br>
+          aquí y ahora.
         </h1>
-        <p class="text-white/90 text-base md:text-lg mb-6 md:mb-8 max-w-md" style="line-height:1.75">
-          Batidos frescos, naturales y deliciosos. Preparados al momento con los mejores ingredientes de temporada.
+        <p class="text-white/90 text-lg mb-8 max-w-md leading-relaxed">
+          Fruta real, sin procesados. Frescor absoluto preparado en menos de 2 minutos.
         </p>
-        <div class="flex flex-wrap gap-3 md:gap-4 justify-center md:justify-start">
+        <div class="flex flex-wrap gap-4">
           <a href="#batidos"
-             class="bg-navy text-white px-6 sm:px-8 py-3 rounded-full font-bold hover:bg-gray-800 transition-colors duration-200 shadow-lg cursor-pointer text-sm sm:text-base">
-            Ver carta
+             class="bg-navy text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-colors duration-200 shadow-xl cursor-pointer">
+            Ver la Carta
           </a>
           <a href="#ubicacion"
-             class="bg-white text-primary px-6 sm:px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors duration-200 shadow-lg cursor-pointer text-sm sm:text-base">
-            Encuéntranos
+             class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors duration-200 shadow-xl cursor-pointer">
+            Dónde estamos
           </a>
         </div>
       </div>
 
-      <div data-aos="fade-left" data-aos-duration="700" data-aos-delay="150" class="flex justify-center mt-6 md:mt-0">
+      <div class="flex justify-center mt-6 md:mt-0" data-aos="zoom-in" data-aos-duration="700" data-aos-delay="200">
         <div class="relative">
-          <div class="w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 rounded-full overflow-hidden border-4 sm:border-8 border-white/30"
-               style="box-shadow:0 24px 60px rgba(0,0,0,0.18)">
-            <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&q=80"
+          <div class="float-img w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] rounded-full border-[10px] border-white/20 overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=800&q=80"
                  alt="Batido de frutas frescas de Bartido"
                  loading="lazy"
                  class="w-full h-full object-cover" />
           </div>
-          <!-- Badge: customers -->
-          <div class="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 bg-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3"
-               style="box-shadow:0 8px 24px rgba(30,58,47,0.15)">
-            <p class="text-xs text-gray-500 font-medium hidden sm:block">Clientes felices</p>
-            <p class="text-lg sm:text-2xl font-bold text-primary">+2.000</p>
+          <!-- Badge rating -->
+          <div class="absolute -top-4 -right-4 bg-white rounded-2xl px-4 py-3 shadow-xl hidden sm:flex items-center gap-2" style="rotate:12deg">
+            <svg class="w-4 h-4 flex-shrink-0" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
+            <div>
+              <p class="font-bold text-dark text-sm">4.9 / 5</p>
+              <p class="text-gray-400 text-xs">Google Reviews</p>
+            </div>
           </div>
-          <!-- Badge: rating -->
-          <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-white rounded-xl sm:rounded-2xl px-3 py-2 sm:px-4 sm:py-3 flex items-center gap-1"
-               style="box-shadow:0 8px 24px rgba(30,58,47,0.15)">
-            <svg class="w-3 h-3 sm:w-4 sm:h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/>
-            </svg>
-            <span class="text-xs sm:text-sm font-bold text-dark">4.9 / 5</span>
+          <!-- Badge clients -->
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow-xl hidden sm:block">
+            <p class="text-xs text-gray-400 font-medium">Clientes felices</p>
+            <p class="text-2xl font-bold text-primary">+2.000</p>
           </div>
         </div>
       </div>
@@ -202,124 +258,171 @@
   </section>
 
   <!-- BATIDOS -->
-  <section id="batidos" class="py-16 md:py-24 bg-emerald-50">
+  <section id="batidos" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Nuestra carta</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-dark mt-2">Nuestros Batidos</h2>
-        <p class="text-dark/60 mt-3 max-w-md mx-auto" style="line-height:1.7">
-          Preparados al momento, sin conservantes, con fruta fresca de temporada.
-        </p>
+        <h2 class="text-4xl md:text-5xl font-bold text-dark mt-2">Nuestros Batidos</h2>
+        <div class="w-20 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
+        <p class="text-dark/60 mt-4 max-w-md mx-auto leading-relaxed">Preparados al momento, sin conservantes, con fruta fresca de temporada.</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
-          <div class="h-52 overflow-hidden">
+        <!-- Mango Paradise -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=500&q=80"
                  alt="Batido tropical Mango Paradise — mango, piña y coco"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Tropical</span>
-            <h3 class="text-xl font-bold text-dark mt-1">Mango Paradise</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Mango, piña, coco y leche de avena.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">4,50€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest" style="color:#00C896">Tropical</span>
+                <h3 class="text-xl font-bold text-dark mt-1">Mango Paradise</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">4,50€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Mango fresco, piña, coco y una base suave de leche de avena.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20el%20Mango%20Paradise%20%F0%9F%A5%AD"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-52 overflow-hidden">
+        <!-- Berry Blast -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1638176066959-d54e23e46a16?w=500&q=80"
                  alt="Batido Berry Blast — fresa, frambuesa y arándanos"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-red-400 uppercase tracking-widest">Frutas rojas</span>
-            <h3 class="text-xl font-bold text-dark mt-1">Berry Blast</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Fresa, frambuesa, arándanos y yogur natural.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">4,50€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-accent">Antioxidante</span>
+                <h3 class="text-xl font-bold text-dark mt-1">Berry Blast</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">4,50€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Fresa, frambuesa, arándanos y yogur natural.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20el%20Berry%20Blast%20%F0%9F%8D%93"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-52 overflow-hidden">
+        <!-- Detox Verde -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=500&q=80"
                  alt="Batido Detox Verde — espinaca, manzana verde y jengibre"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Green Power</span>
-            <h3 class="text-xl font-bold text-dark mt-1">Detox Verde</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Espinaca, manzana verde, jengibre y limón.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">5,00€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Green Power</span>
+                <h3 class="text-xl font-bold text-dark mt-1">Detox Verde</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">5,00€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Espinaca, manzana verde, jengibre y limón.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20el%20Detox%20Verde%20%F0%9F%8D%8F"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
-          <div class="h-52 overflow-hidden">
+        <!-- Banana Power -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=500&q=80"
                  alt="Batido Banana Power — plátano, mantequilla de cacahuete y avena"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-yellow-600 uppercase tracking-widest">Energético</span>
-            <h3 class="text-xl font-bold text-dark mt-1">Banana Power</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Plátano, mantequilla de cacahuete, avena y miel.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">5,00€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-yellow-600">Energético</span>
+                <h3 class="text-xl font-bold text-dark mt-1">Banana Power</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">5,00€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Plátano, mantequilla de cacahuete, avena y miel.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20el%20Banana%20Power%20%F0%9F%8D%8C"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-52 overflow-hidden">
+        <!-- Choco Dream -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=500&q=80"
                  alt="Batido Choco Dream — cacao puro, plátano y vainilla"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-amber-700 uppercase tracking-widest">Clásico</span>
-            <h3 class="text-xl font-bold text-dark mt-1">Choco Dream</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Cacao puro, plátano, leche entera y vainilla.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">4,50€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-amber">Clásico</span>
+                <h3 class="text-xl font-bold text-dark mt-1">Choco Dream</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">4,50€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Cacao puro, plátano, leche entera y vainilla.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Me%20gustar%C3%ADa%20pedir%20el%20Choco%20Dream%20%F0%9F%8D%AB"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
-        <article class="bg-white rounded-3xl overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-52 overflow-hidden">
+        <!-- El Tuyo -->
+        <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+          <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&q=80"
                  alt="Batido personalizado El Tuyo — elige tus ingredientes"
                  loading="lazy"
-                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 motion-reduce:transform-none" />
+                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
           </div>
-          <div class="p-6">
-            <span class="text-xs font-bold text-purple-500 uppercase tracking-widest">Especial</span>
-            <h3 class="text-xl font-bold text-dark mt-1">El Tuyo</h3>
-            <p class="text-dark/55 text-sm mt-2" style="line-height:1.65">Elige tus ingredientes y creamos el batido perfecto.</p>
-            <div class="flex items-center justify-between mt-4">
-              <span class="text-2xl font-bold text-primary">Desde 4€</span>
-              <button class="bg-primary text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-orange-600 transition-colors duration-200 cursor-pointer">Pedir</button>
+          <div class="p-7">
+            <div class="flex justify-between items-start mb-3">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-widest text-purple-500">Especial</span>
+                <h3 class="text-xl font-bold text-dark mt-1">El Tuyo</h3>
+              </div>
+              <span class="text-xl font-bold text-primary">Desde 4€</span>
             </div>
+            <p class="text-dark/55 text-sm mb-6 leading-relaxed">Elige tus ingredientes y creamos el batido perfecto.</p>
+            <a href="https://wa.me/34600000000?text=Hola!%20Quiero%20crear%20mi%20batido%20personalizado%20%F0%9F%8D%B9"
+               target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center gap-2 bg-dark text-white py-3 rounded-2xl font-bold hover:bg-black transition-colors duration-200 cursor-pointer">
+              <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+              Pedir vía WhatsApp
+            </a>
           </div>
         </article>
 
@@ -327,59 +430,59 @@
     </div>
   </section>
 
-  <!-- POR QUÉ NOSOTROS — SVG icons replace emojis (pre-delivery checklist item) -->
-  <section id="porque" class="py-16 md:py-24 bg-white">
+  <!-- POR QUÉ NOSOTROS -->
+  <section id="porque" class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Nuestra diferencia</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-dark mt-2">¿Por qué Bartido?</h2>
+        <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2">
+          Filosofía <em class="not-italic text-primary">Bartido</em>
+        </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+      <div class="grid md:grid-cols-3 gap-8">
 
-        <div class="text-center feature-card" data-aos="fade-up" data-aos-delay="0">
-          <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-4 feature-icon">
+        <div class="p-8 border border-gray-100 rounded-3xl hover:bg-orange-50 transition-colors duration-200" data-aos="fade-up" data-aos-delay="0">
+          <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-orange-100">
             <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                d="M4.5 12.75l6 6 9-13.5"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.5 12.75l6 6 9-13.5"/>
             </svg>
           </div>
-          <h3 class="font-bold text-xl text-dark mb-2">100% Natural</h3>
-          <p class="text-dark/55 text-sm max-w-xs mx-auto" style="line-height:1.7">Sin colorantes, sin conservantes. Solo fruta fresca de temporada y productos naturales.</p>
+          <h3 class="text-xl font-bold text-dark mb-3 text-center">100% Orgánico</h3>
+          <p class="text-dark/55 text-sm text-center leading-relaxed">Fruta seleccionada cada mañana en mercados locales de Madrid. Sin colorantes ni conservantes.</p>
         </div>
 
-        <div class="text-center feature-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-4 feature-icon">
+        <div class="p-8 border border-gray-100 rounded-3xl hover:bg-emerald-50 transition-colors duration-200" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-emerald-100">
+            <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-dark mb-3 text-center">Zero Waste</h3>
+          <p class="text-dark/55 text-sm text-center leading-relaxed">Packaging biodegradable y compostable. Vasos y pajitas 100% ecológicos. Amamos nuestro planeta.</p>
+        </div>
+
+        <div class="p-8 border border-gray-100 rounded-3xl hover:bg-pink-50 transition-colors duration-200" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-amber-100">
             <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="9" stroke="#D97706" stroke-width="1.8"/>
               <path stroke="#D97706" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 7v5l3 3"/>
             </svg>
           </div>
-          <h3 class="font-bold text-xl text-dark mb-2">Listo en 2 minutos</h3>
-          <p class="text-dark/55 text-sm max-w-xs mx-auto" style="line-height:1.7">Preparamos tu batido al momento. Sin esperas, siempre fresco y bien frío.</p>
-        </div>
-
-        <div class="text-center feature-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4 feature-icon">
-            <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-            </svg>
-          </div>
-          <h3 class="font-bold text-xl text-dark mb-2">Eco Friendly</h3>
-          <p class="text-dark/55 text-sm max-w-xs mx-auto" style="line-height:1.7">Vasos y pajitas 100% biodegradables. Cuidamos el planeta mientras cuidas tu cuerpo.</p>
+          <h3 class="text-xl font-bold text-dark mb-3 text-center">Listo en 2 min</h3>
+          <p class="text-dark/55 text-sm text-center leading-relaxed">Sin azúcares añadidos ni conservantes. Solo energía natural, preparada al momento para ti.</p>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS — New section (UI/UX Pro Max: Hero + Testimonials + CTA landing pattern) -->
-  <section id="testimonios" class="py-16 md:py-24 bg-green-50">
+  <!-- TESTIMONIOS -->
+  <section id="testimonios" class="py-24 bg-gray-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Lo que dicen nuestros clientes</span>
         <h2 class="text-3xl md:text-4xl font-bold text-dark mt-2">Opiniones reales</h2>
         <p class="text-dark/55 mt-3 max-w-md mx-auto">Más de 2.000 clientes satisfechos en Madrid</p>
@@ -387,7 +490,7 @@
 
       <div class="grid md:grid-cols-3 gap-8">
 
-        <blockquote class="bg-white rounded-3xl p-5 sm:p-7 testimonial-card" data-aos="fade-up" data-aos-delay="0">
+        <blockquote class="bg-white rounded-3xl p-7 testimonial-card" data-aos="fade-up" data-aos-delay="0">
           <div class="flex gap-0.5 mb-4" aria-label="Valoración: 5 estrellas">
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
@@ -395,7 +498,7 @@
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
           </div>
-          <p class="text-dark/70 text-sm italic mb-5" style="line-height:1.75">"El Detox Verde es mi batido de cada mañana. Noto la diferencia desde el primer día. Ingredientes fresquísimos y servicio genial."</p>
+          <p class="text-dark/70 text-sm italic mb-5 leading-relaxed">"El Detox Verde es mi batido de cada mañana. Noto la diferencia desde el primer día. Ingredientes fresquísimos y servicio genial."</p>
           <footer class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-sm" aria-hidden="true">MA</div>
             <div>
@@ -405,7 +508,7 @@
           </footer>
         </blockquote>
 
-        <blockquote class="bg-white rounded-3xl p-5 sm:p-7 testimonial-card" data-aos="fade-up" data-aos-delay="100">
+        <blockquote class="bg-white rounded-3xl p-7 testimonial-card" data-aos="fade-up" data-aos-delay="100">
           <div class="flex gap-0.5 mb-4" aria-label="Valoración: 5 estrellas">
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
@@ -413,7 +516,7 @@
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
           </div>
-          <p class="text-dark/70 text-sm italic mb-5" style="line-height:1.75">"El Mango Paradise es una maravilla. Muy rico, muy natural y muy bien de precio. Imposible encontrar algo mejor en Madrid."</p>
+          <p class="text-dark/70 text-sm italic mb-5 leading-relaxed">"El Mango Paradise es una maravilla. Muy rico, muy natural y muy bien de precio. Imposible encontrar algo mejor en Madrid."</p>
           <footer class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-primary font-bold text-sm" aria-hidden="true">CG</div>
             <div>
@@ -423,7 +526,7 @@
           </footer>
         </blockquote>
 
-        <blockquote class="bg-white rounded-3xl p-5 sm:p-7 testimonial-card" data-aos="fade-up" data-aos-delay="200">
+        <blockquote class="bg-white rounded-3xl p-7 testimonial-card" data-aos="fade-up" data-aos-delay="200">
           <div class="flex gap-0.5 mb-4" aria-label="Valoración: 5 estrellas">
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
@@ -431,7 +534,7 @@
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
             <svg class="w-4 h-4" fill="#D97706" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.448a1 1 0 00-.364 1.118l1.287 3.957c.3.921-.755 1.688-1.54 1.118L10 15.347l-3.952 2.878c-.784.57-1.838-.197-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.064 9.384c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69L9.049 2.927z"/></svg>
           </div>
-          <p class="text-dark/70 text-sm italic mb-5" style="line-height:1.75">"Vengo desde Chamberí solo para los batidos de Bartido. El Berry Blast es adictivo. El local es acogedor y el equipo muy amable."</p>
+          <p class="text-dark/70 text-sm italic mb-5 leading-relaxed">"Vengo desde Chamberí solo para los batidos de Bartido. El Berry Blast es adictivo. El local es acogedor y el equipo muy amable."</p>
           <footer class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold text-sm" aria-hidden="true">LR</div>
             <div>
@@ -445,91 +548,95 @@
     </div>
   </section>
 
-  <!-- CTA BANNER — post-testimonials placement (landing pattern) -->
-  <section class="hero-bg py-14 md:py-20">
+  <!-- CTA BANNER -->
+  <section class="hero-bg py-16 md:py-20">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="zoom-in" data-aos-duration="600">
       <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Listo para tu batido?</h2>
-      <p class="text-white/90 mb-6 md:mb-8 text-base md:text-lg" style="line-height:1.7">Ven a visitarnos o síguenos en Instagram para ver las novedades.</p>
-      <a href="https://www.instagram.com/bartidobar" target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-2 sm:gap-3 bg-white text-primary font-bold px-6 py-3 sm:px-10 sm:py-4 rounded-full text-base sm:text-lg hover:bg-gray-50 transition-colors duration-200 shadow-xl cursor-pointer">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-        </svg>
-        Síguenos en Instagram
-      </a>
+      <p class="text-white/90 mb-8 text-lg leading-relaxed">Ven a visitarnos o pide directamente por WhatsApp.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="https://wa.me/34600000000?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20Bartido"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 bg-white text-primary font-bold px-8 py-4 rounded-full text-base hover:bg-gray-50 transition-colors duration-200 shadow-xl cursor-pointer">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
+          Pedir por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/bartidobar"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 bg-navy text-white font-bold px-8 py-4 rounded-full text-base hover:bg-black transition-colors duration-200 shadow-xl cursor-pointer">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+      </div>
     </div>
   </section>
 
   <!-- UBICACIÓN -->
-  <section id="ubicacion" class="py-16 md:py-24 bg-emerald-50">
+  <section id="ubicacion" class="py-24 bg-navy text-white">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+      <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Dónde estamos</span>
-        <h2 class="text-3xl md:text-4xl font-bold text-dark mt-2">Encuéntranos</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">¿Vienes a vernos?</h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12 items-center">
 
-        <div data-aos="fade-right">
-          <div class="space-y-6">
+        <div data-aos="fade-right" class="space-y-8">
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-dark">Dirección</h4>
-                <p class="text-dark/60 mt-0.5">Calle de los Batidos, 12<br/>Madrid, España</p>
-              </div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
             </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" aria-hidden="true">
-                  <circle cx="12" cy="12" r="9" stroke="#D97706" stroke-width="2"/>
-                  <path stroke="#D97706" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7v5l3 3"/>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-dark">Horario</h4>
-                <p class="text-dark/60 mt-0.5">
-                  Lunes – Viernes: 9:00 – 21:00<br/>
-                  Sábado: 10:00 – 22:00<br/>
-                  Domingo: 10:00 – 20:00
-                </p>
-              </div>
+            <div>
+              <h4 class="font-bold text-white">Dirección</h4>
+              <p class="text-white/60 mt-1">Calle de los Batidos, 12<br/>28001 Madrid, España</p>
             </div>
-
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-              </div>
-              <div>
-                <h4 class="font-bold text-dark">Contacto</h4>
-                <p class="text-dark/60 mt-0.5">
-                  <a href="tel:+34600000000" class="hover:text-primary transition-colors duration-200 cursor-pointer">+34 600 000 000</a><br/>
-                  <a href="mailto:hola@bartido.com" class="hover:text-primary transition-colors duration-200 cursor-pointer">hola@bartido.com</a>
-                </p>
-              </div>
-            </div>
-
           </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="#D97706" stroke-width="2"/>
+                <path stroke="#D97706" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7v5l3 3"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-white">Horario</h4>
+              <p class="text-white/60 mt-1">
+                Lunes – Viernes: 9:00 – 21:00<br/>
+                Sábado: 10:00 – 22:00<br/>
+                Domingo: 10:00 – 20:00
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-bold text-white">Contacto</h4>
+              <p class="text-white/60 mt-1">
+                <a href="tel:+34600000000" class="hover:text-primary transition-colors duration-200 cursor-pointer">+34 600 000 000</a><br/>
+                <a href="mailto:hola@bartido.com" class="hover:text-primary transition-colors duration-200 cursor-pointer">hola@bartido.com</a>
+              </p>
+            </div>
+          </div>
+
         </div>
 
         <div data-aos="fade-left">
-          <div class="rounded-3xl overflow-hidden h-72 bg-white flex items-center justify-center"
-               style="box-shadow:0 4px 20px rgba(30,58,47,0.09)">
-            <div class="text-center text-dark/35">
+          <div class="rounded-3xl overflow-hidden h-72 bg-white/10 flex items-center justify-center border border-white/10 backdrop-blur-lg">
+            <div class="text-center text-white/40">
               <svg class="w-14 h-14 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
               </svg>
-              <p class="font-semibold">Mapa próximamente</p>
+              <p class="font-semibold text-white/60">Mapa próximamente</p>
               <p class="text-sm">Google Maps embebido aquí</p>
             </div>
           </div>
@@ -540,7 +647,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer id="contacto" class="py-10 md:py-12 bg-navy text-white">
+  <footer id="contacto" class="py-12 bg-white border-t border-gray-100">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="grid md:grid-cols-3 gap-8 mb-8">
@@ -554,12 +661,12 @@
             </svg>
             <span class="text-xl font-bold text-primary" style="font-family:'Lora',serif">Bartido</span>
           </a>
-          <p class="text-white/45 text-sm" style="line-height:1.7">Los mejores batidos naturales. Frescos, saludables y preparados con amor.</p>
+          <p class="text-dark/50 text-sm leading-relaxed">Los mejores batidos naturales de Madrid. Frescos, saludables y preparados con amor.</p>
         </div>
 
         <div>
-          <h4 class="font-bold mb-4">Navegación</h4>
-          <ul class="space-y-2 text-white/45 text-sm">
+          <h4 class="font-bold text-dark mb-4">Navegación</h4>
+          <ul class="space-y-2 text-dark/50 text-sm">
             <li><a href="#batidos"      class="hover:text-primary transition-colors duration-200 cursor-pointer">Nuestros batidos</a></li>
             <li><a href="#porque"      class="hover:text-primary transition-colors duration-200 cursor-pointer">Por qué nosotros</a></li>
             <li><a href="#testimonios" class="hover:text-primary transition-colors duration-200 cursor-pointer">Opiniones</a></li>
@@ -568,54 +675,65 @@
         </div>
 
         <div>
-          <h4 class="font-bold mb-4">Síguenos</h4>
+          <h4 class="font-bold text-dark mb-4">Síguenos</h4>
           <div class="flex gap-3">
             <a href="https://www.instagram.com/bartidobar" target="_blank" rel="noopener noreferrer"
-               class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors duration-200 cursor-pointer"
+               class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white text-dark transition-colors duration-200 cursor-pointer"
                aria-label="Bartido en Instagram">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer"
+               class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white text-dark transition-colors duration-200 cursor-pointer"
+               aria-label="Bartido en WhatsApp">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/></svg>
             </a>
             <a href="#"
-               class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors duration-200 cursor-pointer"
+               class="w-10 h-10 bg-gray-100 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white text-dark transition-colors duration-200 cursor-pointer"
                aria-label="Bartido en Facebook">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-            <a href="#"
-               class="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center hover:bg-primary transition-colors duration-200 cursor-pointer"
-               aria-label="Bartido en X (Twitter)">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
           </div>
         </div>
 
       </div>
 
-      <div class="pt-6 text-center text-white/25 text-sm" style="border-top:1px solid rgba(255,255,255,0.07)">
-        © 2026 Bartido. Todos los derechos reservados.
+      <div class="pt-6 text-center text-dark/30 text-xs" style="border-top:1px solid rgba(30,58,47,0.07)">
+        © 2026 Bartido Madrid. Todos los derechos reservados.
       </div>
+
     </div>
   </footer>
 
   <script>
-    // AOS: ease-out easing (UX rule: ease-out for entering elements)
-    AOS.init({ once: true, offset: 80, duration: 700, easing: 'ease-out-cubic' });
+    // AOS
+    AOS.init({ once: true, offset: 80, duration: 800, easing: 'ease-out-quart' });
 
-    // Mobile menu with aria-expanded (accessibility)
+    // 3D Tilt — respects prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const rotateX = ((y - rect.height / 2) / rect.height) * 12;
+          const rotateY = ((rect.width / 2 - x) / rect.width) * 12;
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+    }
+
+    // Mobile menu
     const menuBtn    = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-
-    menuBtn.addEventListener('click', function () {
+    menuBtn.addEventListener('click', () => {
       const isOpen = !mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
       menuBtn.setAttribute('aria-expanded', String(!isOpen));
     });
-
     document.querySelectorAll('#mobileMenu a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -623,5 +741,6 @@
       });
     });
   </script>
+
 </body>
 </html>
