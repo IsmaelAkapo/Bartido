@@ -1,107 +1,102 @@
 # Bartido — Batidos Naturales en Madrid
 
-Landing page statique pour un bar à smoothies à Madrid.
+Landing page estática para un bar de smoothies en Madrid.
 
 ## Stack
 - HTML5 + Tailwind CSS (CDN) + AOS animations
-- Fonts: **Lora** (titres) + **Raleway** (corps) — pairing UI/UX Pro Max wellness
-- Hébergement: GitHub Pages → https://ismaelakapo.github.io/Bartido/
+- Fonts: **Lora** (títulos) + **Raleway** (cuerpo)
+- Hosting: GitHub Pages → https://ismaelakapo.github.io/Bartido/
+- Repo: https://github.com/IsmaelAkapo/Bartido
 
-## Ce qui a été fait (session 2 — 24/04/2026)
+---
 
-### Corrections design + refacto technique
+## Estado actual de la página
 
-#### Design
-- **Hero gradient** : palette harmonisée (`#FF6B35 → #E8511A → #1E3A2F → #2A4F3A`), animation ralentie 20s (était 12s), taille réduite 300% (était 400%) — plus premium, moins agressif
-- **CTA Banner** : nouvelle classe `.cta-section` (dark green `#0F2318 → #1E3A2F` + glow radial orange centré) — ne copie plus le hero
-- **"Por qué nosotros"** : numéros géants `01` `02` `03` en arrière-plan (style éditorial), `relative overflow-hidden` sur chaque card
-- **Testimonios** : card centrale (Carlos G.) mise en vedette — fond dark green `#1E3A2F`, texte blanc, `scale(1.04)`, ombre profonde — casse la "grille cimetière"
-- **Section Ubicación — map** : placeholder remplacé par une vraie carte adresse avec icône, texte et bouton "Ver en Google Maps" (propre, intentionnel)
+### Secciones (en orden)
+1. **Navbar** — blur backdrop, hamburger mobile con aria-expanded
+2. **Hero** — gradiente animado, imagen flotante, badges glassmorphism, botánica SVG animada
+3. **Marquee strip** — ticker de valores clave (social proof)
+4. **Batidos** — 6 cards con tilt 3D, barra color por categoría, botón WhatsApp por batido
+5. **Por qué nosotros** — 3 features con números editoriales 01/02/03 en background
+6. **3 CTA cards** — visual cards: Ver carta / Pedir WhatsApp / Ubicación (inspirado Amazonia)
+7. **Testimonios** — 3 reviews, card central destacada (dark green, scale)
+8. **CTA Banner** — dark green con glow radial, botones WhatsApp + Instagram
+9. **Ubicación** — dirección, horarios, contacto, tarjeta con botón Google Maps
+10. **Footer** — nav + redes sociales (Instagram, WhatsApp, Facebook)
+11. **Botón WA flotante** — oculto en el hero, pulse animation
 
-#### Technique
-- **SVG deduplication** : icône WhatsApp définie une seule fois via `<symbol id="icon-whatsapp">`, utilisée partout avec `<use href="#icon-whatsapp">` (était répétée 9 fois)
-- **SVG deduplication** : étoile de rating définie une seule fois via `<symbol id="icon-star">`, utilisée partout (était répétée 16 fois)
-- **OG meta** : ajout `og:image:width` (1200) et `og:image:height` (800)
-- **Facebook link** : `href="#"` remplacé par `facebook.com/bartidobar`
+### Diseño
+- Paleta: `#FF6B35` naranja CTA · `#1E3A2F` verde oscuro · `#1A1A2E` navy · `#D97706` amber · `#FF2D78` magenta · `#00C896` teal
+- Hero gradiente: `-45deg, #FF6B35, #E8511A, #1E3A2F, #2A4F3A` — animación 20s
+- CTA section: `#0F2318 → #1E3A2F` + glow radial naranja centrado
+- Cards batidos: rounded-[2rem], barra gradiente top por categoría, card-soft shadows
+- Testimonial central: fondo `#1E3A2F`, texto blanco, scale(1.04) en desktop
 
-## Ce qui a été fait (session 1 — 24/04/2026)
+### Efectos visuales
+- **Botánica SVG** en hero: 5 trazos que se dibujan al cargar (stroke-dashoffset)
+- **Subrayados ondulados SVG** en títulos de sección: se dibujan al hacer scroll (IntersectionObserver)
+- **Transiciones de color por scroll**: body background cambia suavemente entre secciones (IntersectionObserver + CSS transition 0.9s)
+- **Tilt 3D** en cards de batidos: JS mousemove + perspective(1000px)
+- **Shine effect** en botones CTA: pseudo-element sweep al hover
+- **Count-up** en badge "+2.000": IntersectionObserver + requestAnimationFrame
+- **Marquee** pausa on hover
 
-### Design system appliqué (UI/UX Pro Max + Antigravity skills)
-- Style : **Soft UI Evolution** — ombres douces multi-couches
-- Palette : orange `#FF6B35` (CTA), vert forêt `#1E3A2F` (texte), mint `#ECFDF5` (fonds)
-- Or muted `#D97706` remplace le `#FFD700` trop harsh
-- Tous les emojis remplacés par **SVG Heroicons**
-- `prefers-reduced-motion` CSS complet
-- `cursor-pointer`, `aria-label`, `aria-expanded`, `loading="lazy"` partout
-- `transition-colors duration-200` sur tous les hovers
+### Técnico
+- SVG icons definidos una sola vez con `<symbol>`: `#icon-whatsapp` y `#icon-star`
+- `prefers-reduced-motion`: todos los efectos JS + CSS desactivados
+- Accesibilidad: aria-label, aria-expanded, aria-hidden, focus-visible WCAG AA
+- Schema.org JSON-LD (FoodEstablishment), Open Graph completo con dimensiones
+- `loading="lazy"` en todas las imágenes
 
-### Sections présentes
-1. **Navbar** — dark blur (`rgba(255,255,255,0.93)`), hamburger mobile avec aria
-2. **Hero** — gradient animé (orange → amber → teal), image flottante, badges glassmorphism
-3. **Batidos** — 6 cards (Mango Paradise, Berry Blast, Detox Verde, Banana Power, Choco Dream, El Tuyo)
-4. **Por qué nosotros** — 3 features avec icônes SVG gradient
-5. **Testimonios** — 3 avis clients (section ajoutée, pattern UI/UX Pro Max)
-6. **CTA Banner** — post-testimonials, bouton Instagram
-7. **Ubicación** — adresse, horaires, contact, map placeholder
-8. **Footer** — nav + réseaux sociaux SVG (Instagram, Facebook, X)
+### Responsive
+- Hero h1: `text-4xl sm:text-5xl md:text-7xl`
+- Secciones: `py-14 md:py-24`
+- Section headers: `mb-10 md:mb-16`
+- CTA cards: `h-44 sm:h-64 md:h-72`, descripción hidden en móvil
+- Batidos imágenes: `h-44 sm:h-56`
+- Step numbers: `text-[5rem] md:text-[7rem]`
+- Testimonial featured: sin scale en móvil (evita overflow)
+- Botones hero: apilados en móvil (`flex-col sm:flex-row`)
 
-### Responsive (375 → 640 → 768 → 1024 → 1440px)
-- Hero : `min-h-[85vh] md:min-h-screen`, image `w-56 sm:w-72 md:w-96`
-- Titres : `text-3xl md:text-4xl` / h1 `text-4xl sm:text-5xl md:text-6xl`
-- Sections : `py-16 md:py-24`
-- Boutons : `px-6 sm:px-8`, `justify-center md:justify-start`
-- Testimonials cards : `p-5 sm:p-7`
+---
 
-## Ce qui reste à faire (priorités)
+## Pendiente (necesario para lanzar)
 
-### 1. Contenu réel (bloquant pour le lancement)
-- [ ] Remplacer `34600000000` par le vrai numéro WhatsApp partout (navbar, cards, CTA, footer, bouton flottant)
-- [ ] Remplacer les liens `instagram.com/bartidobar` et `facebook.com/bartidobar` par les vrais comptes
-- [ ] **Google Maps embed** — remplacer le bloc adresse par un vrai `<iframe>` Google Maps
-- [ ] Photos réelles du local et des produits (remplacer Unsplash)
+### Contenido real — BLOQUEANTE
+- [ ] Reemplazar `34600000000` por el número real de WhatsApp (navbar, 6 cards, CTA, footer, botón flotante)
+- [ ] Reemplazar `instagram.com/bartidobar` y `facebook.com/bartidobar` por las cuentas reales
+- [ ] **Google Maps embed** — sustituir la tarjeta de dirección por un `<iframe>` real
+- [ ] Fotos reales del local y los productos (actualmente Unsplash CDN)
+- [ ] Dirección real en Schema.org JSON-LD (líneas 23-30 del `<head>`)
 
-### 2. SEO local
-- [ ] Mettre la vraie adresse dans le Schema.org JSON-LD (ligne 23-30)
-- [ ] Mettre le vrai numéro de téléphone dans le Schema.org
+### SEO
+- [ ] Número de teléfono real en Schema.org
 
-### 3. Améliorations design optionnelles
-- [ ] Texte hero : **3D text-shadow** sur h1
-- [ ] Icônes "Por qué nosotros" : gradient coloré au lieu de bg pastel
+---
 
-## Fichiers
-```
-bartido/
-├── index.html       # Page principale (627 lignes)
-├── css/styles.css   # Vide (tout inline dans index.html)
-├── js/main.js       # Vide (JS inline dans index.html)
-└── assets/
-    ├── icons/       # Vide
-    └── images/      # Vide (images Unsplash CDN)
-```
-
-## Tailwind config actuelle
+## Tailwind config
 ```js
 colors: {
-  primary: '#FF6B35',  // orange CTA
-  dark:    '#1E3A2F',  // texte vert forêt
-  navy:    '#1A1A2E',  // footer/navbar dark
-  amber:   '#D97706',  // or muted
+  primary: '#FF6B35',  // naranja CTA
+  dark:    '#1E3A2F',  // texto verde oscuro
+  navy:    '#1A1A2E',  // navbar/footer dark
+  amber:   '#D97706',  // dorado muted
+  accent:  '#FF2D78',  // magenta
+  teal:    '#00C896',  // teal
 }
 ```
 
-## À ajouter au prochain Tailwind config (pour effets 3D)
-```js
-colors: {
-  primary: '#FF6B35',
-  accent:  '#FF2D78',  // magenta (nouveau)
-  gold:    '#FFB800',  // or vif (remplace amber)
-  teal:    '#00C896',  // teal électrique (nouveau)
-  dark:    '#1E3A2F',
-  navy:    '#1A1A2E',
-  deep:    '#0A1628',  // bleu nuit (hero dark)
-}
-```
-
-## Repo
-- GitHub : https://github.com/IsmaelAkapo/Bartido
-- Live : https://ismaelakapo.github.io/Bartido/
+## CSS classes importantes
+| Clase | Uso |
+|---|---|
+| `.hero-bg` | Gradiente animado del hero |
+| `.cta-section` | Fondo dark del banner CTA |
+| `.card-soft` | Sombras suaves en cards de batidos |
+| `.tilt-card` | Hook JS para el efecto 3D |
+| `.btn-shine` | Efecto shine en botones |
+| `.action-card` | CTA cards visuales |
+| `.testimonial-featured` | Card testimonial destacada |
+| `.stroke-hero` | Botánica SVG animada (hero) |
+| `.stroke-section` | Subrayados SVG por scroll |
+| `.wa-float` | Botón WhatsApp flotante |
+| `.marquee-track` | Ticker de social proof |
