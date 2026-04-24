@@ -7,6 +7,23 @@ Landing page statique pour un bar à smoothies à Madrid.
 - Fonts: **Lora** (titres) + **Raleway** (corps) — pairing UI/UX Pro Max wellness
 - Hébergement: GitHub Pages → https://ismaelakapo.github.io/Bartido/
 
+## Ce qui a été fait (session 2 — 24/04/2026)
+
+### Corrections design + refacto technique
+
+#### Design
+- **Hero gradient** : palette harmonisée (`#FF6B35 → #E8511A → #1E3A2F → #2A4F3A`), animation ralentie 20s (était 12s), taille réduite 300% (était 400%) — plus premium, moins agressif
+- **CTA Banner** : nouvelle classe `.cta-section` (dark green `#0F2318 → #1E3A2F` + glow radial orange centré) — ne copie plus le hero
+- **"Por qué nosotros"** : numéros géants `01` `02` `03` en arrière-plan (style éditorial), `relative overflow-hidden` sur chaque card
+- **Testimonios** : card centrale (Carlos G.) mise en vedette — fond dark green `#1E3A2F`, texte blanc, `scale(1.04)`, ombre profonde — casse la "grille cimetière"
+- **Section Ubicación — map** : placeholder remplacé par une vraie carte adresse avec icône, texte et bouton "Ver en Google Maps" (propre, intentionnel)
+
+#### Technique
+- **SVG deduplication** : icône WhatsApp définie une seule fois via `<symbol id="icon-whatsapp">`, utilisée partout avec `<use href="#icon-whatsapp">` (était répétée 9 fois)
+- **SVG deduplication** : étoile de rating définie une seule fois via `<symbol id="icon-star">`, utilisée partout (était répétée 16 fois)
+- **OG meta** : ajout `og:image:width` (1200) et `og:image:height` (800)
+- **Facebook link** : `href="#"` remplacé par `facebook.com/bartidobar`
+
 ## Ce qui a été fait (session 1 — 24/04/2026)
 
 ### Design system appliqué (UI/UX Pro Max + Antigravity skills)
@@ -37,30 +54,19 @@ Landing page statique pour un bar à smoothies à Madrid.
 
 ## Ce qui reste à faire (priorités)
 
-### 1. Effets 3D + couleurs vibrantes (demandé, pas encore fait)
-Inspirations : Joe & the Juice, Pressed, Tropical Smoothie Cafe
-- [ ] Hero : gradient animé (`background-size: 400% 400%` + `@keyframes gradientShift`)
-- [ ] Blobs flottants en arrière-plan hero (CSS `blur` + `@keyframes`)
-- [ ] Hero image : animation float (`@keyframes floatImg`)
-- [ ] Cards produits : **tilt 3D** au hover (JS `mousemove` + `perspective`)
-- [ ] Cards : barre de couleur gradient en haut (couleur par catégorie)
-- [ ] Boutons : effet **shine** (pseudo-element sweep au hover)
-- [ ] **Marquee strip** (ticker de valeurs clés entre hero et produits)
-- [ ] **Wave SVG dividers** entre sections
-- [ ] Palette plus vibrante : ajouter `accent: #FF2D78` (magenta) et `teal: #00C896`
-- [ ] Navbar dark sur hero (rgba dark au lieu de blanc)
+### 1. Contenu réel (bloquant pour le lancement)
+- [ ] Remplacer `34600000000` par le vrai numéro WhatsApp partout (navbar, cards, CTA, footer, bouton flottant)
+- [ ] Remplacer les liens `instagram.com/bartidobar` et `facebook.com/bartidobar` par les vrais comptes
+- [ ] **Google Maps embed** — remplacer le bloc adresse par un vrai `<iframe>` Google Maps
+- [ ] Photos réelles du local et des produits (remplacer Unsplash)
+
+### 2. SEO local
+- [ ] Mettre la vraie adresse dans le Schema.org JSON-LD (ligne 23-30)
+- [ ] Mettre le vrai numéro de téléphone dans le Schema.org
+
+### 3. Améliorations design optionnelles
 - [ ] Texte hero : **3D text-shadow** sur h1
-- [ ] Icônes features : gradient coloré (orange, amber, green) au lieu de bg pastel
-
-### 2. Fonctionnel
-- [ ] Boutons "Pedir" → lien WhatsApp (`https://wa.me/34600000000?text=Hola...`)
-- [ ] Google Maps embed dans section ubicación
-- [ ] Formulaire de contact fonctionnel (ou lien mailto)
-
-### 3. SEO
-- [ ] Schema.org JSON-LD (LocalBusiness + FoodEstablishment)
-- [ ] Open Graph meta tags
-- [ ] Favicon SVG
+- [ ] Icônes "Por qué nosotros" : gradient coloré au lieu de bg pastel
 
 ## Fichiers
 ```
