@@ -293,6 +293,34 @@
 
     /* ── frontend-design: Count-up animation ── */
     .count-up { transition: opacity 0.3s; }
+
+    /* ── Animated SVG botanical strokes (inspired Amazonia) ── */
+    .stroke-hero path {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: strokeDraw 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    .stroke-hero path:nth-child(2) { animation-delay: 0.3s; }
+    .stroke-hero path:nth-child(3) { animation-delay: 0.55s; }
+    .stroke-hero path:nth-child(4) { animation-delay: 0.75s; }
+    .stroke-hero path:nth-child(5) { animation-delay: 0.95s; }
+    @keyframes strokeDraw { to { stroke-dashoffset: 0; } }
+
+    .stroke-section {
+      stroke-dasharray: 120;
+      stroke-dashoffset: 120;
+      transition: stroke-dashoffset 1.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .stroke-section.is-drawn { stroke-dashoffset: 0; }
+
+    /* ── Smooth background color transitions on scroll ── */
+    body { transition: background-color 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* ── Action CTA cards ── */
+    .action-card { transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .action-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(0,0,0,0.2); }
+    .action-card-img { transition: transform 0.65s ease; }
+    .action-card:hover .action-card-img { transform: scale(1.07); }
   </style>
 </head>
 
@@ -416,6 +444,17 @@
     </div>
   </section>
 
+  <!-- Botanical decoration — draws itself on load -->
+  <div class="stroke-hero absolute bottom-10 left-10 hidden lg:block pointer-events-none z-10" aria-hidden="true">
+    <svg width="130" height="130" viewBox="0 0 130 130" fill="none">
+      <path d="M15 115 Q40 85 65 65 Q90 45 115 15" stroke="rgba(255,255,255,0.28)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M65 65 Q48 45 36 56" stroke="rgba(255,255,255,0.22)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M65 65 Q82 48 94 60" stroke="rgba(255,255,255,0.22)" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M42 90 Q26 74 38 60" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M90 40 Q108 33 114 46" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
   <!-- WAVE: hero → marquee -->
   <svg class="wave-bottom" style="background:transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#f9fafb" d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/></svg>
 
@@ -443,13 +482,15 @@
   </div>
 
   <!-- BATIDOS -->
-  <section id="batidos" class="py-24 bg-gray-50">
+  <section id="batidos" class="py-24 bg-gray-50" data-bg="#F9F7F5">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Nuestra carta</span>
         <h2 class="text-4xl md:text-5xl font-bold text-dark mt-2">Nuestros Batidos</h2>
-        <div class="w-20 h-1.5 bg-primary mx-auto mt-4 rounded-full"></div>
+        <svg class="mx-auto mt-4" width="80" height="12" viewBox="0 0 80 12" fill="none" aria-hidden="true">
+          <path class="stroke-section" d="M4 6 Q20 1 40 6 Q60 11 76 6" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+        </svg>
         <p class="text-dark/60 mt-4 max-w-md mx-auto leading-relaxed">Preparados al momento, sin conservantes, con fruta fresca de temporada.</p>
       </div>
 
@@ -622,7 +663,7 @@
   </section>
 
   <!-- POR QUÉ NOSOTROS -->
-  <section id="porque" class="py-24 bg-white">
+  <section id="porque" class="py-24" data-bg="#F5FDF8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16" data-aos="fade-up">
@@ -630,6 +671,9 @@
         <h2 class="text-3xl md:text-5xl font-bold text-dark mt-2">
           Filosofía <em class="not-italic text-primary">Bartido</em>
         </h2>
+        <svg class="mx-auto mt-4" width="80" height="12" viewBox="0 0 80 12" fill="none" aria-hidden="true">
+          <path class="stroke-section" d="M4 6 Q20 1 40 6 Q60 11 76 6" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+        </svg>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
@@ -672,13 +716,83 @@
     </div>
   </section>
 
+  <!-- ACCIÓN — 3 CTA cards -->
+  <section class="py-16" data-bg="#FEFEFE">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Ver la Carta -->
+        <a href="#batidos"
+           class="action-card relative rounded-3xl overflow-hidden h-72 block cursor-pointer"
+           data-aos="fade-up" data-aos-delay="0">
+          <img src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=600&q=80"
+               alt="Ver nuestra carta de batidos" loading="lazy"
+               class="action-card-img w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="text-white/60 text-xs uppercase tracking-widest font-bold">Descubre</span>
+            <h3 class="text-2xl font-bold text-white mt-1" style="font-family:'Lora',serif">Nuestra Carta</h3>
+            <p class="text-white/65 text-sm mt-1 mb-3">6 batidos preparados al momento</p>
+            <span class="inline-flex items-center gap-1 text-primary font-bold text-sm">
+              Ver batidos
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Pedir por WhatsApp -->
+        <a href="https://wa.me/34600000000?text=Hola!%20Quiero%20pedir%20un%20batido"
+           target="_blank" rel="noopener noreferrer"
+           class="action-card relative rounded-3xl overflow-hidden h-72 block cursor-pointer"
+           data-aos="fade-up" data-aos-delay="100">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80"
+               alt="Pedir batido por WhatsApp" loading="lazy"
+               class="action-card-img w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="text-white/60 text-xs uppercase tracking-widest font-bold">Rápido y fácil</span>
+            <h3 class="text-2xl font-bold text-white mt-1" style="font-family:'Lora',serif">Pedir Ahora</h3>
+            <p class="text-white/65 text-sm mt-1 mb-3">Listo en 2 minutos, pedido en segundos</p>
+            <span class="inline-flex items-center gap-1 font-bold text-sm" style="color:#25D366">
+              Abrir WhatsApp
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- Dónde estamos -->
+        <a href="#ubicacion"
+           class="action-card relative rounded-3xl overflow-hidden h-72 block cursor-pointer"
+           data-aos="fade-up" data-aos-delay="200">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80"
+               alt="Visítanos en Madrid" loading="lazy"
+               class="action-card-img w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="text-white/60 text-xs uppercase tracking-widest font-bold">Madrid</span>
+            <h3 class="text-2xl font-bold text-white mt-1" style="font-family:'Lora',serif">Encuéntranos</h3>
+            <p class="text-white/65 text-sm mt-1 mb-3">Calle de los Batidos, 12 · Abierto todos los días</p>
+            <span class="inline-flex items-center gap-1 text-teal font-bold text-sm">
+              Ver ubicación
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIOS -->
-  <section id="testimonios" class="py-24 bg-gray-50">
+  <section id="testimonios" class="py-24 bg-gray-50" data-bg="#F8F8F8">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
       <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-primary font-bold uppercase tracking-widest text-sm">Lo que dicen nuestros clientes</span>
         <h2 class="text-3xl md:text-4xl font-bold text-dark mt-2">Opiniones reales</h2>
+        <svg class="mx-auto mt-3" width="80" height="12" viewBox="0 0 80 12" fill="none" aria-hidden="true">
+          <path class="stroke-section" d="M4 6 Q20 1 40 6 Q60 11 76 6" stroke="#FF6B35" stroke-width="3" stroke-linecap="round"/>
+        </svg>
         <p class="text-dark/55 mt-3 max-w-md mx-auto">Más de 2.000 clientes satisfechos en Madrid</p>
       </div>
 
@@ -978,6 +1092,31 @@
         }, { threshold: 0.5 });
         observer.observe(countEl);
       }
+    }
+
+    // SVG stroke section titles — trigger on scroll
+    if (!prefersReducedMotion) {
+      const strokeEls = document.querySelectorAll('.stroke-section');
+      const strokeObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-drawn');
+            strokeObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.8 });
+      strokeEls.forEach(el => strokeObs.observe(el));
+    }
+
+    // Scroll background color transitions
+    const bgSections = document.querySelectorAll('[data-bg]');
+    if (bgSections.length) {
+      const bgObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) document.body.style.backgroundColor = e.target.dataset.bg;
+        });
+      }, { rootMargin: '-20% 0px -20% 0px', threshold: 0 });
+      bgSections.forEach(s => bgObs.observe(s));
     }
 
     // Masquer WA flottant quand on est sur la section hero
