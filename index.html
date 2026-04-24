@@ -145,6 +145,122 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    /* ── Theme Factory: CSS variables centralisées ── */
+    :root {
+      --color-primary: #FF6B35;
+      --color-dark:    #1E3A2F;
+      --color-navy:    #1A1A2E;
+      --color-amber:   #D97706;
+      --color-accent:  #FF2D78;
+      --color-teal:    #00C896;
+      --font-heading:  'Lora', serif;
+      --font-body:     'Raleway', sans-serif;
+      --shadow-card:   0 4px 16px rgba(30,58,47,0.07), 0 1px 4px rgba(30,58,47,0.04);
+      --shadow-hover:  0 16px 40px rgba(30,58,47,0.13), 0 4px 12px rgba(30,58,47,0.07);
+    }
+
+    /* ── frontend-design: Grain texture sur hero ── */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.04;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+    .hero-bg > * { position: relative; z-index: 2; }
+
+    /* ── frontend-design: Shine effect sur boutons CTA ── */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.5s ease;
+    }
+    .btn-shine:hover::after { left: 160%; }
+
+    /* ── frontend-design: Barre couleur top des cards ── */
+    .card-bar {
+      height: 4px;
+      width: 100%;
+      border-radius: 0;
+    }
+
+    /* ── web-artifacts-builder: Marquee strip ── */
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marqueeScroll 25s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* ── web-artifacts-builder: Wave dividers ── */
+    .wave-bottom {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-bottom: -2px;
+    }
+    .wave-top {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-top: -2px;
+    }
+
+    /* ── web-artifacts-builder: Bouton WhatsApp flottant ── */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 3.5rem;
+      height: 3.5rem;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+    }
+    .wa-float-pulse::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #25D366;
+      animation: waPulse 2s ease-out infinite;
+    }
+    @keyframes waPulse {
+      0%   { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* ── frontend-design: Count-up animation ── */
+    .count-up { transition: opacity 0.3s; }
   </style>
 </head>
 
@@ -221,11 +337,11 @@
         </p>
         <div class="flex flex-wrap gap-4">
           <a href="#batidos"
-             class="bg-navy text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-colors duration-200 shadow-xl cursor-pointer">
+             class="btn-shine bg-navy text-white px-8 py-4 rounded-full font-bold hover:bg-black transition-colors duration-200 shadow-xl cursor-pointer">
             Ver la Carta
           </a>
           <a href="#ubicacion"
-             class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors duration-200 shadow-xl cursor-pointer">
+             class="btn-shine bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-colors duration-200 shadow-xl cursor-pointer">
             Dónde estamos
           </a>
         </div>
@@ -250,12 +366,38 @@
           <!-- Badge clients -->
           <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow-xl hidden sm:block">
             <p class="text-xs text-gray-400 font-medium">Clientes felices</p>
-            <p class="text-2xl font-bold text-primary">+2.000</p>
+            <p class="text-2xl font-bold text-primary count-up">+2.000</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- WAVE: hero → marquee -->
+  <svg class="wave-bottom" style="background:transparent" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none"><path fill="#f9fafb" d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z"/></svg>
+
+  <!-- MARQUEE STRIP — social proof ticker -->
+  <div class="bg-gray-50 py-4 overflow-hidden border-y border-gray-100" aria-hidden="true">
+    <div class="flex">
+      <div class="marquee-track">
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> 100% Natural</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-teal">✦</span> Sin conservantes</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-accent">✦</span> Listo en 2 minutos</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> +2.000 clientes felices</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-teal">✦</span> Ingredientes de temporada</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-accent">✦</span> Eco Friendly</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> Madrid</span>
+        <!-- duplicate pour boucle infinie -->
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> 100% Natural</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-teal">✦</span> Sin conservantes</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-accent">✦</span> Listo en 2 minutos</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> +2.000 clientes felices</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-teal">✦</span> Ingredientes de temporada</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-accent">✦</span> Eco Friendly</span>
+        <span class="text-sm font-bold text-dark/50 uppercase tracking-widest flex items-center gap-2"><span class="text-primary">✦</span> Madrid</span>
+      </div>
+    </div>
+  </div>
 
   <!-- BATIDOS -->
   <section id="batidos" class="py-24 bg-gray-50">
@@ -272,6 +414,7 @@
 
         <!-- Mango Paradise -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-bar" style="background:linear-gradient(90deg,#00C896,#10B981)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1502741224143-90386d7f8c82?w=500&q=80"
                  alt="Batido tropical Mango Paradise — mango, piña y coco"
@@ -298,6 +441,7 @@
 
         <!-- Berry Blast -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-bar" style="background:linear-gradient(90deg,#FF2D78,#FF6B35)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1638176066959-d54e23e46a16?w=500&q=80"
                  alt="Batido Berry Blast — fresa, frambuesa y arándanos"
@@ -324,6 +468,7 @@
 
         <!-- Detox Verde -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-bar" style="background:linear-gradient(90deg,#10B981,#00C896)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=500&q=80"
                  alt="Batido Detox Verde — espinaca, manzana verde y jengibre"
@@ -350,6 +495,7 @@
 
         <!-- Banana Power -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-bar" style="background:linear-gradient(90deg,#D97706,#F59E0B)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=500&q=80"
                  alt="Batido Banana Power — plátano, mantequilla de cacahuete y avena"
@@ -376,6 +522,7 @@
 
         <!-- Choco Dream -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-bar" style="background:linear-gradient(90deg,#92400E,#D97706)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=500&q=80"
                  alt="Batido Choco Dream — cacao puro, plátano y vainilla"
@@ -402,6 +549,7 @@
 
         <!-- El Tuyo -->
         <article class="tilt-card bg-white rounded-[2rem] overflow-hidden card-soft cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-bar" style="background:linear-gradient(90deg,#7C3AED,#A855F7)"></div>
           <div class="h-56 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?w=500&q=80"
                  alt="Batido personalizado El Tuyo — elige tus ingredientes"
@@ -704,6 +852,17 @@
     </div>
   </footer>
 
+  <!-- Bouton WhatsApp flottant -->
+  <a href="https://wa.me/34600000000?text=Hola!%20Quiero%20pedir%20un%20batido%20en%20Bartido"
+     target="_blank" rel="noopener noreferrer"
+     class="wa-float wa-float-pulse"
+     aria-label="Pedir por WhatsApp">
+    <svg class="w-7 h-7 text-white relative z-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.374 0 0 5.373 0 12c0 2.124.549 4.122 1.517 5.858L0 24l6.335-1.644A11.945 11.945 0 0012 24c6.626 0 12-5.373 12-12S18.626 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.374l-.36-.214-3.74.97.995-3.645-.234-.374A9.778 9.778 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182S21.818 6.578 21.818 12 17.422 21.818 12 21.818z"/>
+    </svg>
+  </a>
+
   <script>
     // AOS
     AOS.init({ once: true, offset: 80, duration: 800, easing: 'ease-out-quart' });
@@ -740,6 +899,42 @@
         menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
+
+    // Count-up animation sur le badge +2.000
+    if (!prefersReducedMotion) {
+      const countEl = document.querySelector('.count-up');
+      if (countEl) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            let start = 0, end = 2000, duration = 1500;
+            let startTime = null;
+            function step(ts) {
+              if (!startTime) startTime = ts;
+              const progress = Math.min((ts - startTime) / duration, 1);
+              const val = Math.floor(progress * end);
+              countEl.textContent = '+' + val.toLocaleString('es-ES');
+              if (progress < 1) requestAnimationFrame(step);
+              else countEl.textContent = '+2.000';
+            }
+            requestAnimationFrame(step);
+            observer.disconnect();
+          });
+        }, { threshold: 0.5 });
+        observer.observe(countEl);
+      }
+    }
+
+    // Masquer WA flottant quand on est sur la section hero
+    const heroSection = document.querySelector('.hero-bg');
+    const waFloat = document.querySelector('.wa-float');
+    if (heroSection && waFloat) {
+      const heroObserver = new IntersectionObserver(entries => {
+        waFloat.style.opacity = entries[0].isIntersecting ? '0' : '1';
+        waFloat.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+      }, { threshold: 0.3 });
+      heroObserver.observe(heroSection);
+    }
   </script>
 
 </body>
